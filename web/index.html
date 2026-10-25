@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Touchline: live football you can hear</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <a class="skip" href="#play">Skip to the play button</a>
+
+  <header class="masthead">
+    <h1>Touchline</h1>
+    <p class="tagline">Live football you can hear</p>
+    <nav aria-label="Pages">
+      <a href="/" aria-current="page">Listen</a>
+      <a href="/research">Research</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="pick" aria-labelledby="pick-h">
+      <h2 id="pick-h" class="visually-hidden">Choose a match</h2>
+      <label for="match">Match</label>
+      <select id="match"></select>
+      <fieldset class="mode">
+        <legend>Listen to</legend>
+        <label><input type="radio" name="mode" value="highlights" checked> Key moments <span id="hl-len"></span></label>
+        <label><input type="radio" name="mode" value="full"> Full match</label>
+      </fieldset>
+      <label for="voice">Voice</label>
+      <select id="voice">
+        <option value="browser">This device's voice</option>
+        <option value="azure">Neural voice (Azure)</option>
+        <option value="screenreader">My screen reader</option>
+      </select>
+    </section>
+
+    <section class="board" aria-labelledby="board-h">
+      <h2 id="board-h" class="visually-hidden">Score</h2>
+      <div class="scoreline" id="scoreline" aria-live="off">
+        <div class="side home">
+          <span class="team" id="home-name">Home</span>
+          <span class="dir">attacks to your right</span>
+        </div>
+        <div class="nums"><span id="home-goals">0</span><span class="dash" aria-hidden="true">–</span><span id="away-goals">0</span></div>
+        <div class="side away">
+          <span class="team" id="away-name">Away</span>
+          <span class="dir">attacks to your left</span>
+        </div>
+      </div>
+      <p class="clock" id="clock">Before kick-off</p>
+    </section>
+
+    <section class="now" aria-labelledby="now-h">
+      <h2 id="now-h" class="visually-hidden">Commentary</h2>
+      <p class="caption" id="caption" aria-live="off">Choose a match, then press Play.</p>
+      <p class="previous" id="previous" aria-hidden="true"></p>
+    </section>
+
+    <section class="controls" aria-label="Playback">
+      <button id="play" class="play" type="button" aria-keyshortcuts="Space" disabled>Play</button>
+      <button id="prev" type="button" aria-keyshortcuts="B">Previous moment</button>
+      <button id="next" type="button" aria-keyshortcuts="N">Next moment</button>
+      <button id="ask-score" type="button" aria-keyshortcuts="S">Score</button>
+      <button id="ask-win" type="button" aria-keyshortcuts="W">Who's winning?</button>
+      <button id="ask-stats" type="button" aria-keyshortcuts="P">Stats</button>
+      <button id="repeat" type="button" aria-keyshortcuts="R">Repeat</button>
+    </section>
+
+    <section class="ask" aria-labelledby="ask-h">
+      <h2 id="ask-h">Ask about the match</h2>
+      <form id="ask-form" autocomplete="off">
+        <label for="ask-input" class="visually-hidden">Your question</label>
+        <input id="ask-input" type="text" maxlength="300" placeholder="How many shots have they had since half-time?" aria-keyshortcuts="A">
+        <button type="submit">Ask</button>
+        <button type="button" id="ask-mic" hidden>Speak</button>
+      </form>
+      <p class="ask-hint" id="ask-hint">Press A to ask by voice or type a question. Answers only use what has happened so far.</p>
+    </section>
+
+    <section class="pitch-wrap" aria-labelledby="pitch-h">
+      <h2 id="pitch-h" class="visually-hidden">Pitch view for sighted viewers</h2>
+      <div class="pitch-frame" id="pitch-frame" data-shown="false">
+        <canvas id="pitch" width="1050" height="680" aria-hidden="true"></canvas>
+        <p class="pitch-cover" id="pitch-cover">Audio only. Press V to show the pitch.</p>
+      </div>
+    </section>
+
+    <section class="keys" aria-labelledby="keys-h">
+      <h2 id="keys-h">Keyboard</h2>
+      <dl>
+        <div><dt>Space</dt><dd>Play or pause</dd></div>
+        <div><dt>S</dt><dd>Score and time</dd></div>
+        <div><dt>W</dt><dd>Who's likely to win</dd></div>
+        <div><dt>P</dt><dd>Possession, shots and cards</dd></div>
+        <div><dt>L</dt><dd>Where the ball is</dd></div>
+        <div><dt>R</dt><dd>Repeat the last line</dd></div>
+        <div><dt>A</dt><dd>Ask a question</dd></div>
+        <div><dt>N and B</dt><dd>Next or previous key moment</dd></div>
+        <div><dt>+ and −</dt><dd>Speak faster or slower</dd></div>
+        <div><dt>C</dt><dd>Crowd sound on or off</dd></div>
+        <div><dt>V</dt><dd>Show or hide the pitch</dd></div>
+        <div><dt>H</dt><dd>Hear these keys</dd></div>
+      </dl>
+    </section>
+
+    <details class="hood" id="hood">
+      <summary>Under the hood</summary>
+      <div id="hood-body"><p>Load a match to see how the agents performed.</p></div>
+    </details>
+  </main>
+
+  <p class="sr-status visually-hidden" id="sr-polite" aria-live="polite"></p>
+  <p class="sr-status visually-hidden" id="sr-assertive" aria-live="assertive"></p>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

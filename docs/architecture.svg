@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900" font-family="Atkinson Hyperlegible, Arial, Helvetica, sans-serif">
+  <title>Touchline architecture</title>
+  <desc>Match events flow through a fast deterministic path (state tracker, describer, director) to the listener. Language-model agents run in a Microsoft Agent Framework workflow where a verifier checks every draft before it is spoken or shown.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#FFFFFF"/>
+    </marker>
+    <marker id="arrowY" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#FFD83D"/>
+    </marker>
+    <style>
+      .box { fill: #13306E; stroke: #9FB3E0; stroke-width: 2; }
+      .hot { fill: #13306E; stroke: #FFD83D; stroke-width: 3; }
+      .h { fill: #FFFFFF; font-size: 26px; font-weight: 700; }
+      .s { fill: #C9D5F0; font-size: 19px; }
+      .lab { fill: #FFD83D; font-size: 22px; font-weight: 700; }
+      .note { fill: #9FB3E0; font-size: 18px; }
+      .line { stroke: #FFFFFF; stroke-width: 2.5; fill: none; }
+      .lineY { stroke: #FFD83D; stroke-width: 2.5; fill: none; }
+      .dash { stroke: #9FB3E0; stroke-width: 2; fill: none; stroke-dasharray: 7 6; }
+      .chip { fill: #071538; stroke: #9FB3E0; stroke-width: 1.5; }
+      .chiptext { fill: #FFFFFF; font-size: 21px; font-weight: 700; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="#0B1F4D"/>
+
+  <!-- fast path -->
+  <text x="40" y="58" class="lab">Fast path: deterministic, every goal called in under half a second</text>
+
+  <rect x="40" y="90" width="250" height="130" rx="14" class="box"/>
+  <text x="62" y="138" class="h">Match events</text>
+  <text x="62" y="170" class="s">synthetic league,</text>
+  <text x="62" y="196" class="s">one event at a time</text>
+
+  <rect x="350" y="90" width="260" height="130" rx="14" class="box"/>
+  <text x="372" y="138" class="h">State tracker</text>
+  <text x="372" y="170" class="s">score, ball, players,</text>
+  <text x="372" y="196" class="s">win probability</text>
+
+  <rect x="670" y="90" width="260" height="130" rx="14" class="box"/>
+  <text x="692" y="138" class="h">Describer</text>
+  <text x="692" y="170" class="s">spatial lines, counter</text>
+  <text x="692" y="196" class="s">calls, goal context</text>
+
+  <rect x="990" y="90" width="260" height="130" rx="14" class="hot"/>
+  <text x="1012" y="138" class="h">Director</text>
+  <text x="1012" y="170" class="s">one voice: priorities,</text>
+  <text x="1012" y="196" class="s">interrupts, drops stale</text>
+
+  <rect x="1310" y="90" width="250" height="130" rx="14" class="box"/>
+  <text x="1332" y="138" class="h">Listener</text>
+  <text x="1332" y="170" class="s">voice, captions,</text>
+  <text x="1332" y="196" class="s">crowd, vibration</text>
+
+  <path d="M290,155 L346,155" class="line" marker-end="url(#arrow)"/>
+  <path d="M610,155 L666,155" class="line" marker-end="url(#arrow)"/>
+  <path d="M930,155 L986,155" class="line" marker-end="url(#arrow)"/>
+  <path d="M1250,155 L1306,155" class="line" marker-end="url(#arrow)"/>
+
+  <!-- workflow container -->
+  <rect x="40" y="320" width="1520" height="380" rx="18" fill="none" stroke="#FFD83D" stroke-width="2" stroke-dasharray="10 8"/>
+  <text x="1536" y="358" class="lab" text-anchor="end">Microsoft Agent Framework workflow</text>
+  <text x="1536" y="386" class="note" text-anchor="end">verified before anyone hears it</text>
+
+  <rect x="70" y="390" width="330" height="80" rx="12" class="box"/>
+  <text x="90" y="425" class="h">Co-commentator</text>
+  <text x="90" y="453" class="s">context in stoppages</text>
+  <rect x="70" y="485" width="330" height="80" rx="12" class="box"/>
+  <text x="90" y="520" class="h">Ask Touchline</text>
+  <text x="90" y="548" class="s">8 tools, match so far only</text>
+  <rect x="70" y="580" width="330" height="80" rx="12" class="box"/>
+  <text x="90" y="615" class="h">Research desk</text>
+  <text x="90" y="643" class="s">8 tools, whole season</text>
+
+  <rect x="500" y="455" width="320" height="140" rx="14" class="box"/>
+  <text x="522" y="502" class="h">Draft</text>
+  <text x="522" y="534" class="s">Agent + language model</text>
+  <text x="522" y="560" class="s">calls tools; every result</text>
+  <text x="522" y="586" class="s">goes into a ledger</text>
+
+  <rect x="920" y="455" width="320" height="140" rx="14" class="hot"/>
+  <text x="942" y="502" class="h">Verifier</text>
+  <text x="942" y="534" class="s">every number and name</text>
+  <text x="942" y="560" class="s">must be in the ledger,</text>
+  <text x="942" y="586" class="s">in the right row</text>
+
+  <rect x="1320" y="455" width="215" height="140" rx="14" class="box"/>
+  <text x="1342" y="502" class="h">Spoken</text>
+  <text x="1342" y="534" class="s">or shown with</text>
+  <text x="1342" y="560" class="s">table, chart and</text>
+  <text x="1342" y="586" class="s">tool calls</text>
+
+  <path d="M400,430 C450,430 450,500 496,505" class="line" marker-end="url(#arrow)"/>
+  <path d="M400,525 L496,525" class="line" marker-end="url(#arrow)"/>
+  <path d="M400,620 C450,620 450,550 496,545" class="line" marker-end="url(#arrow)"/>
+  <path d="M820,525 L916,525" class="line" marker-end="url(#arrow)"/>
+  <path d="M1240,525 L1316,525" class="lineY" marker-end="url(#arrowY)"/>
+  <text x="1252" y="512" class="note">pass</text>
+
+  <!-- retry loop -->
+  <path d="M1080,595 C1080,668 660,668 660,599" class="line" marker-end="url(#arrow)"/>
+  <text x="870" y="688" class="note" text-anchor="middle">fail: one retry, told exactly what was wrong, then a safe fallback</text>
+
+  <!-- verified co-commentary up to the director -->
+  <path d="M1120,455 L1120,224" class="lineY" marker-end="url(#arrowY)"/>
+  <text x="1132" y="290" class="note">verified co-commentary</text>
+
+  <!-- tools read live state -->
+  <path d="M480,220 L480,415 C480,440 520,440 548,451" class="dash" marker-end="url(#arrow)"/>
+  <text x="494" y="282" class="note">tools read the live state</text>
+
+  <!-- services -->
+  <text x="40" y="770" class="lab">Built on</text>
+  <rect x="40" y="790" width="350" height="70" rx="35" class="chip"/>
+  <text x="215" y="833" class="chiptext" text-anchor="middle">Microsoft Agent Framework</text>
+  <rect x="410" y="790" width="420" height="70" rx="35" class="chip"/>
+  <text x="620" y="833" class="chiptext" text-anchor="middle">Azure OpenAI in Foundry</text>
+  <rect x="850" y="790" width="320" height="70" rx="35" class="chip"/>
+  <text x="1010" y="833" class="chiptext" text-anchor="middle">Azure AI Speech</text>
+  <rect x="1190" y="790" width="370" height="70" rx="35" class="chip"/>
+  <text x="1375" y="833" class="chiptext" text-anchor="middle">Azure Container Apps</text>
+</svg>

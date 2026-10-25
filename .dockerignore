@@ -1,0 +1,13 @@
+venv/
+.venv/
+.env
+.cache/
+**/__pycache__/
+.pytest_cache/
+notebooks/
+tests/
+docs/
+matchgen/
+scripts/
+*.md
+!README.md

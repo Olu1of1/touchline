@@ -1,0 +1,21 @@
+position,club,club_id,played,won,drawn,lost,goals_for,goals_against,points,xg_for,xg_against,goal_difference
+1,Ravensholt Athletic,RAV,38,24,10,4,71,28,82,78.34,32.12,43
+2,Corriemoor City,COR,38,24,10,4,70,27,82,71.31,36.69,43
+3,Dunhallow United,DUN,38,24,6,8,81,38,78,85.76,39.39,43
+4,Northgate Harriers,NGH,38,21,9,8,59,37,72,64.83,40.87,22
+5,Eskmouth Wanderers,ESK,38,17,8,13,67,52,59,55.38,49.69,15
+6,Glenmarrow,GLE,38,16,10,12,53,44,58,68.16,48.5,9
+7,Kestrel Bay,KES,38,17,7,14,56,54,58,58.8,53.43,2
+8,Hartsmere Vale,HAR,38,14,13,11,51,54,55,45.79,55.49,-3
+9,Ashcombe Rovers,ASH,38,14,10,14,49,50,52,47.01,54.19,-1
+10,Millbeck Forest,MIL,38,13,9,16,50,52,48,53.31,62.7,-2
+11,Larkspur County,LAR,38,14,6,18,54,66,48,50.42,59.47,-12
+12,Fernhill FC,FER,38,12,10,16,45,63,46,41.34,64.87,-18
+13,Thistlecombe,THI,38,12,9,17,49,62,45,45.3,58.93,-13
+14,Oakhurst Sporting,OAK,38,12,8,18,37,48,44,39.42,59.04,-11
+15,Brackenford Borough,BRB,38,12,7,19,48,62,43,52.61,57.11,-14
+16,Saltmarsh Town,SAL,38,13,3,22,44,58,42,44.48,69.94,-14
+17,Ironmere Town,IRO,38,11,8,19,38,62,41,41.72,65.09,-24
+18,Wyvern Docks,WYV,38,9,10,19,36,49,37,45.66,51.92,-13
+19,Pennwick United,PEN,38,5,15,18,37,61,30,39.06,67.01,-24
+20,Queensreach Rangers,QUE,38,6,12,20,30,58,30,52.24,54.49,-28

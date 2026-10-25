@@ -1,0 +1,4 @@
+# Everything for development: the app, the data generator and the tests
+-r requirements-app.txt
+matplotlib>=3.7
+pytest>=7.0

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Touchline Research: ask about the season</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="research">
+  <a class="skip" href="#q">Skip to the question box</a>
+
+  <header class="masthead">
+    <h1>Touchline</h1>
+    <nav aria-label="Pages">
+      <a href="/">Listen</a>
+      <a href="/research" aria-current="page">Research</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="r-intro" aria-labelledby="r-h">
+      <h2 id="r-h">Ask about the season</h2>
+      <p>Tables, leaderboards, form, head-to-heads and luck, across all 380 matches. Every number in an answer is checked against the data before you see it.</p>
+      <form id="r-form" autocomplete="off">
+        <label for="q" class="visually-hidden">Your question</label>
+        <input id="q" type="text" maxlength="400" placeholder="Which teams were the luckiest this season?">
+        <button type="submit">Ask</button>
+        <button type="button" id="r-mic" hidden>Speak</button>
+      </form>
+      <div class="chips" role="group" aria-label="Example questions">
+        <button type="button" class="chip">Who won the league?</button>
+        <button type="button" class="chip">Which teams were the luckiest?</button>
+        <button type="button" class="chip">Top scorers</button>
+        <button type="button" class="chip">Show the title race</button>
+        <button type="button" class="chip">Ravensholt v Corriemoor</button>
+        <button type="button" class="chip">Who is the most clinical finisher?</button>
+      </div>
+      <label class="readaloud"><input type="checkbox" id="speak-answers"> Read answers aloud</label>
+    </section>
+
+    <section aria-labelledby="conv-h">
+      <h2 id="conv-h" class="visually-hidden">Answers</h2>
+      <ol class="turns" id="turns"></ol>
+      <p class="empty" id="empty">Ask a question, or pick one of the examples above.</p>
+    </section>
+  </main>
+
+  <div class="tip" id="tip" role="tooltip" hidden></div>
+  <p class="visually-hidden" id="r-status" aria-live="polite"></p>
+  <script src="/static/research.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "league_id": "SYN1",
+  "name": "Synthetic Football League",
+  "season": "2026/27",
+  "country": "Fictional",
+  "clubs": 20,
+  "matches": 380,
+  "note": "All clubs, players, referees and matches are fictional and generated.",
+  "generator_params": {
+    "chance_rate": 0.064,
+    "home_factor": 1.168,
+    "strength_spread": 0.87
+  },
+  "files": [
+    "clubs.csv",
+    "events.csv.gz",
+    "ground_truth_club_ratings.csv",
+    "lineups.csv",
+    "matches.csv",
+    "player_match_stats.csv",
+    "players.csv",
+    "possessions.csv.gz",
+    "referees.csv",
+    "standings.csv",
+    "standings_by_matchweek.csv",
+    "suspensions.csv",
+    "team_match_stats.csv",
+    "league.json"
+  ],
+  "coordinate_system": "105x68 m; each event in the acting team's attacking direction (x=0 own goal line, x=105 opponent goal line; y=0 acting team's right touchline)"
+}

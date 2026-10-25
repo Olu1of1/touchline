@@ -1,0 +1,7 @@
+# What the Touchline web app needs at runtime (used by the Dockerfile)
+pandas>=2.0
+fastapi>=0.110
+uvicorn>=0.29
+openai>=1.40
+agent-framework-core>=1.23
+agent-framework-openai>=1.17

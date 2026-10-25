@@ -1,0 +1,21 @@
+club_id,name,short_name,code,city,stadium,capacity,style,formation,primary_colour,secondary_colour
+COR,Corriemoor City,Corriemoor,COR,Corriemoor,The Citadel,53400,possession,4-3-3,#6CABDD,#FFFFFF
+RAV,Ravensholt Athletic,Ravensholt,RAV,Ravensholt,Ravensholt Park,60200,high_press,4-3-3,#B3121B,#111111
+DUN,Dunhallow United,Dunhallow,DUN,Dunhallow,Old Quarry Road,61800,counter,4-2-3-1,#1C2C5B,#F2C230
+NGH,Northgate Harriers,Northgate,NGH,Northgate,Harrier Lane,41500,balanced,4-2-3-1,#0B6E4F,#FFFFFF
+GLE,Glenmarrow,Glenmarrow,GLE,Glenmarrow,The Marrow,36100,high_press,4-2-3-1,#5B2C83,#E8E8E8
+KES,Kestrel Bay,Kestrel Bay,KES,Kestrel Bay,Cliffside Stadium,32800,wing_play,4-3-3,#00A3E0,#0A2240
+QUE,Queensreach Rangers,Queensreach,QUE,Queensreach,Crown Meadow,38700,wing_play,4-3-3,#003DA5,#FFFFFF
+HAR,Hartsmere Vale,Hartsmere,HAR,Hartsmere,Vale Park Road,27400,possession,4-3-3,#C8102E,#FFFFFF
+OAK,Oakhurst Sporting,Oakhurst,OAK,Oakhurst,The Acorn,30900,possession,3-4-3,#2E7D32,#FDD835
+WYV,Wyvern Docks,Wyvern,WYV,Wyvern,Dockside Ground,25600,high_press,3-4-3,#E65100,#1A1A1A
+ASH,Ashcombe Rovers,Ashcombe,ASH,Ashcombe,Combe Lane,31200,balanced,4-4-2,#1565C0,#FFFFFF
+LAR,Larkspur County,Larkspur,LAR,Larkspur,County Ground,28300,wing_play,4-4-2,#7B1FA2,#FFD54F
+ESK,Eskmouth Wanderers,Eskmouth,ESK,Eskmouth,Estuary Park,26100,counter,5-3-2,#212121,#F5F5F5
+BRB,Brackenford Borough,Brackenford,BRB,Brackenford,Bracken Hill,24900,direct,4-4-2,#8D6E63,#FFFFFF
+PEN,Pennwick United,Pennwick,PEN,Pennwick,St Aldric's Field,23800,balanced,4-2-3-1,#D32F2F,#1E88E5
+THI,Thistlecombe,Thistlecombe,THI,Thistlecombe,The Thistle,21500,balanced,5-3-2,#4A148C,#C0CA33
+MIL,Millbeck Forest,Millbeck,MIL,Millbeck,Millstream Road,22700,counter,4-4-2,#1B5E20,#FFFFFF
+SAL,Saltmarsh Town,Saltmarsh,SAL,Saltmarsh,Marsh End,20400,direct,4-4-2,#FBC02D,#0D47A1
+IRO,Ironmere Town,Ironmere,IRO,Ironmere,The Foundry,19800,direct,4-4-2,#455A64,#FF7043
+FER,Fernhill FC,Fernhill,FER,Fernhill,Fern Lane,18600,counter,5-3-2,#00695C,#FFFFFF
