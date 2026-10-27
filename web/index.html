@@ -4,9 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Touchline: live football you can hear</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="preload" href="/static/fonts/atkinson-hyperlegible-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/static/fonts/big-shoulders-display-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
@@ -24,19 +23,25 @@
   <main>
     <section class="pick" aria-labelledby="pick-h">
       <h2 id="pick-h" class="visually-hidden">Choose a match</h2>
-      <label for="match">Match</label>
-      <select id="match"></select>
-      <fieldset class="mode">
+      <div class="field field-match">
+        <label for="match">Match</label>
+        <select id="match"></select>
+      </div>
+      <fieldset class="field mode">
         <legend>Listen to</legend>
-        <label><input type="radio" name="mode" value="highlights" checked> Key moments <span id="hl-len"></span></label>
-        <label><input type="radio" name="mode" value="full"> Full match</label>
+        <div class="mode-options">
+          <label><input type="radio" name="mode" value="highlights" checked> Key moments <span id="hl-len"></span></label>
+          <label><input type="radio" name="mode" value="full"> Full match</label>
+        </div>
       </fieldset>
-      <label for="voice">Voice</label>
-      <select id="voice">
-        <option value="browser">This device's voice</option>
-        <option value="azure">Neural voice (Azure)</option>
-        <option value="screenreader">My screen reader</option>
-      </select>
+      <div class="field">
+        <label for="voice">Voice</label>
+        <select id="voice">
+          <option value="browser">This device's voice</option>
+          <option value="azure">Neural voice (Azure)</option>
+          <option value="screenreader">My screen reader</option>
+        </select>
+      </div>
     </section>
 
     <section class="board" aria-labelledby="board-h">

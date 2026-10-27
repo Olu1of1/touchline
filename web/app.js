@@ -341,10 +341,10 @@ function drawPitch() {
   const c = $("pitch"), g = c.getContext("2d"), k = 10;
   g.clearRect(0, 0, c.width, c.height);
   for (let i = 0; i < 12; i++) {
-    g.fillStyle = i % 2 ? "#2E8B57" : "#2A8050";
+    g.fillStyle = i % 2 ? "#10422F" : "#0E3A2B";
     g.fillRect(i * c.width / 12, 0, c.width / 12 + 1, c.height);
   }
-  g.strokeStyle = "#E8F5EC"; g.lineWidth = 3;
+  g.strokeStyle = "rgba(244,247,251,.75)"; g.lineWidth = 3;
   g.strokeRect(1.5, 1.5, c.width - 3, c.height - 3);
   g.beginPath(); g.moveTo(52.5 * k, 0); g.lineTo(52.5 * k, 68 * k); g.stroke();
   g.beginPath(); g.arc(52.5 * k, 34 * k, 9.15 * k, 0, Math.PI * 2); g.stroke();
@@ -361,7 +361,7 @@ function drawPitch() {
   if (pt && phase(S.clock) === "live") {
     g.beginPath(); g.arc(pt[1] * k, (68 - pt[2]) * k, 13, 0, Math.PI * 2);
     g.fillStyle = "#FFD83D"; g.fill();
-    g.lineWidth = 4; g.strokeStyle = pt[3] === 0 ? "#FFFFFF" : "#0B1F4D"; g.stroke();
+    g.lineWidth = 4; g.strokeStyle = pt[3] === 0 ? "#F4F7FB" : "#0A1838"; g.stroke();
   }
 }
 
@@ -629,7 +629,7 @@ async function init() {
   for (const m of ms) {
     const o = document.createElement("option");
     o.value = m.match_id;
-    o.textContent = `${m.home} v ${m.away}, matchweek ${m.matchweek}`;
+    o.textContent = `${m.home} v ${m.away}, week ${m.matchweek}`;
     if (m.recommended) rec.appendChild(o.cloneNode(true));
     (groups[m.matchweek] = groups[m.matchweek] || []).push(o);
   }

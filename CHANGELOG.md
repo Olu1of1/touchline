@@ -2,6 +2,14 @@
 
 Each update ships as `touchline-vN-update.zip`, containing only the files that changed. Extract it into the project folder (the one with `README.md` in it) and choose **Replace** when asked.
 
+## v8 (27 Oct): redesign
+- The scoreboard is drawn as the pitch: halfway line, centre circle, penalty areas, with each team's direction of attack marked by an arrow.
+- Scoreboard type in Big Shoulders Display; everything readable stays in Atkinson Hyperlegible. Both fonts are self-hosted in `web/fonts/` (SIL Open Font License), so the page no longer depends on Google Fonts.
+- Yellow is reserved for what Touchline says: live lines and research answers.
+- Match, listening mode and voice sit in one row; every control shows its keyboard shortcut as a keycap.
+- A level bar beside the commentary moves while it plays (off with reduced motion).
+- The pitch view uses the same turf and chalk colours. New README screenshots.
+
 ## v7 (25 Oct): live on Azure
 - Live app link in the README.
 - `requirements-app.txt` pinned to the exact versions the deployed app and the tests run on.
