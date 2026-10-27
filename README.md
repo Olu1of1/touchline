@@ -131,7 +131,7 @@ One command builds and deploys to Azure Container Apps. See [docs/DEPLOY.md](doc
 python -m pytest -q
 ```
 
-44 tests cover the data generator's invariants, and for Touchline:
+45 tests cover the data generator's invariants, and for Touchline:
 - every goal is announced in under a second, with one voice at a time and nothing said before it happens;
 - the agents are causal;
 - the Verifier catches invented numbers and names.

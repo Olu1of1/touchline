@@ -45,6 +45,16 @@ def matches():
     return ms
 
 
+@app.get("/api/players/{match_id}")
+def players(match_id: str):
+    """Who is on the pitch and every touch of the ball, for the pitch view's estimated player positions."""
+    match_id = match_id.upper()
+    if match_id not in set(league()["matches"].match_id):
+        raise HTTPException(404, f"No match {match_id}. Match IDs run M001 to M380.")
+    from .players import players_payload
+    return players_payload(match_id)
+
+
 @app.get("/api/timeline/{match_id}")
 def timeline(match_id: str):
     match_id = match_id.upper()

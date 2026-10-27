@@ -222,6 +222,7 @@ button:disabled:hover { border-color: transparent; }
   color: var(--chalk); font-size: var(--step-1); transition: opacity .6s ease;
 }
 .pitch-frame[data-shown="true"] .pitch-cover { opacity: 0; pointer-events: none; }
+.pitch-note { margin: .75rem 0 0; color: var(--haze); font-size: var(--step--1); max-width: 70ch; }
 
 /* ------------------------------------------------------------------ keys */
 .keys { padding: 1.75rem 0 2.5rem; border-top: 3px solid var(--steel); }

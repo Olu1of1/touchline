@@ -2,6 +2,11 @@
 
 Each update ships as `touchline-vN-update.zip`, containing only the files that changed. Extract it into the project folder (the one with `README.md` in it) and choose **Replace** when asked.
 
+## v9 (27 Oct): all 22 players on the pitch view
+- The pitch view shows every player on the pitch (shirt numbers; home in chalk, away in navy), plus the ball. Substitutions and red cards take effect at the right moment.
+- Positions are estimated, and the page says so: each player holds the spot their role gives them, the team shifts with the ball (further up when it has it), and a player is pulled to the exact spot whenever the data records them touching the ball. Running speed is capped, so nobody teleports.
+- New endpoint `/api/players/{match_id}` (`touchline/players.py`): who is on when, and every touch in the listener's frame.
+
 ## v8 (27 Oct): redesign
 - The scoreboard is drawn as the pitch: halfway line, centre circle, penalty areas, with each team's direction of attack marked by an arrow.
 - Scoreboard type in Big Shoulders Display; everything readable stays in Atkinson Hyperlegible. Both fonts are self-hosted in `web/fonts/` (SIL Open Font License), so the page no longer depends on Google Fonts.

@@ -296,3 +296,14 @@ def test_model_moments_can_be_rationed(monkeypatch):
 def test_junk_endpoint_error_is_explained():
     from touchline.agents import explain_error
     assert "AZURE_OPENAI_ENDPOINT" in explain_error(AttributeError("'str' object has no attribute 'choices'"))
+
+
+def test_players_payload_for_pitch_view():
+    from touchline.players import players_payload
+    d = players_payload("M059")
+    on_at_kickoff = [p for p in d["players"] if p["on"] <= 45.0 < p["off"]]
+    assert len(on_at_kickoff) == 22 and {p["team"] for p in on_at_kickoff} == {0, 1}
+    assert all(p["role"] for p in d["players"])                      # substitutes inherit a role
+    assert any(p["exit"] == "sent_off" for p in d["players"])        # M059 has a red card
+    t = [x[0] for x in d["touches"]]
+    assert t == sorted(t) and all(0 <= x[2] <= 105 and 0 <= x[3] <= 68 for x in d["touches"])

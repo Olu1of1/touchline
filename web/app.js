@@ -354,15 +354,116 @@ function drawPitch() {
     g.strokeRect(x1 * k, 24.84 * k, 5.5 * k, 18.32 * k);
   }
   const [h, a] = teamNames();
-  g.fillStyle = "rgba(255,255,255,.9)"; g.font = "700 28px 'Atkinson Hyperlegible', sans-serif";
-  g.textAlign = "left"; g.fillText(`${h} attack this way →`, 24, 44);
-  g.textAlign = "right"; g.fillText(`← ${a} attack this way`, c.width - 24, c.height - 24);
+  g.font = "700 26px 'Atkinson Hyperlegible', sans-serif";
+  g.textBaseline = "middle";
+  dot(g, 36, 40, 11, 0); g.fillStyle = "rgba(244,247,251,.95)"; g.textAlign = "left"; g.fillText(`${h} attack this way →`, 56, 41);
+  dot(g, c.width - 36, c.height - 38, 11, 1); g.fillStyle = "rgba(244,247,251,.95)"; g.textAlign = "right"; g.fillText(`← ${a} attack this way`, c.width - 56, c.height - 37);
   const pt = ballInterp(S.clock);
-  if (pt && phase(S.clock) === "live") {
-    g.beginPath(); g.arc(pt[1] * k, (68 - pt[2]) * k, 13, 0, Math.PI * 2);
-    g.fillStyle = "#FFD83D"; g.fill();
-    g.lineWidth = 4; g.strokeStyle = pt[3] === 0 ? "#F4F7FB" : "#0A1838"; g.stroke();
+  const live = pt && phase(S.clock) === "live";
+  if (S.squad) {
+    g.font = "700 17px 'Atkinson Hyperlegible', sans-serif"; g.textAlign = "center";
+    for (const p of smoothPositions(S.clock, live ? pt : null)) {
+      dot(g, p.x * k, (68 - p.y) * k, 17, p.team);
+      g.fillStyle = p.team === 0 ? "#0A1838" : "#F4F7FB";
+      g.fillText(String(p.num), p.x * k, (68 - p.y) * k + 1);
+    }
   }
+  if (live) {
+    g.beginPath(); g.arc(pt[1] * k, (68 - pt[2]) * k, 9, 0, Math.PI * 2);
+    g.fillStyle = "#FFD83D"; g.fill();
+    g.lineWidth = 3; g.strokeStyle = "#0A1838"; g.stroke();
+  }
+}
+
+/* Home: chalk shirts with navy numbers. Away: navy shirts with a chalk ring. */
+function dot(g, x, y, r, team) {
+  g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2);
+  g.fillStyle = team === 0 ? "#F4F7FB" : "#0A1838"; g.fill();
+  g.lineWidth = 3; g.strokeStyle = team === 0 ? "#0A1838" : "#F4F7FB"; g.stroke();
+}
+
+/* Estimated positions. The data records touches, not tracking: each player holds a spot set by their
+ * role, the whole team shifts with the ball (further up when it has the ball), and a player is pulled
+ * to the exact place whenever the data says they touched it. Coordinates are the listener frame. */
+const ROLE_SPOT = {
+  GK: [5, 34], RB: [30, 10], LB: [30, 58], RWB: [40, 8], LWB: [40, 60], RCB: [25, 22], CB: [24, 34], LCB: [25, 46],
+  DM: [38, 34], RDM: [38, 26], LDM: [38, 42], RCM: [48, 22], LCM: [48, 46], RM: [55, 10], LM: [55, 58],
+  RAM: [62, 22], CAM: [62, 34], LAM: [62, 46], RW: [68, 10], LW: [68, 58], ST: [76, 34], RST: [74, 26], LST: [74, 42],
+};
+const clampN = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+/* Players run, they don't teleport: cap how far each shirt moves per second of match time.
+ * A jump in the clock (seeking, next moment) snaps everyone to place. */
+function smoothPositions(t, ball) {
+  const target = playerPositions(t, ball);
+  const dt = t - (S.posClock ?? -99);
+  const prev = S.posPrev || {};
+  const snap = dt < 0 || dt > 3;
+  const next = {};
+  const out = target.map((p) => {
+    const key = `${p.team}-${p.num}`, q = prev[key];
+    let x = p.x, y = p.y;
+    if (q && !snap) {
+      const d = Math.hypot(p.x - q.x, p.y - q.y), max = (p.onBall ? 14 : 8.5) * dt;
+      if (d > max) { x = q.x + (p.x - q.x) * max / d; y = q.y + (p.y - q.y) * max / d; }
+    }
+    next[key] = { x, y };
+    return { ...p, x, y };
+  });
+  S.posPrev = next; S.posClock = t;
+  return out;
+}
+
+function playerPositions(t, ball) {
+  const sq = S.squad, T = sq.touches;
+  // the latest touch at or before t
+  let i = Math.min(S.touchIdx, T.length - 1);
+  while (i + 1 < T.length && T[i + 1][0] <= t) i++;
+  while (i > 0 && T[i][0] > t) i--;
+  S.touchIdx = i;
+  const cur = T[i] && T[i][0] <= t ? T[i] : null;
+  const next = T[i + 1] && T[i + 1][0] > t ? T[i + 1] : (cur ? null : T[0]);
+  const bx = ball ? ball[1] : 52.5, by = ball ? ball[2] : 34;
+  const poss = ball ? ball[3] : -1;
+  const out = [];
+  sq.players.forEach((p, idx) => {
+    if (t < p.on || t >= p.off) return;
+    const spot = ROLE_SPOT[p.role] || [50, 34];
+    // work in this team's attacking frame, then flip the away side into the listener frame
+    const home = p.team === 0;
+    const ax = home ? bx : 105 - bx, ay = home ? by : 68 - by;
+    const inPoss = poss === p.team;
+    let x, y;
+    if (p.role === "GK") {
+      x = 4 + Math.max(0, ax - 30) * 0.12; y = 34 + (ay - 34) * 0.15;
+    } else {
+      x = clampN(spot[0] + (ax - 52.5) * 0.6 + (inPoss ? 6 : -4), 9, 100);
+      y = clampN(34 + (spot[1] - 34) * (inPoss ? 1.05 : 0.8) + (ay - 34) * 0.3, 3, 65);
+    }
+    if (!home) { x = 105 - x; y = 68 - y; }
+    // pull towards real touches: the player on the ball, the next one to receive it, the last one to release it
+    let w = 0, tx = x, ty = y;
+    if (cur && cur[1] === idx && (!next || t < next[0])) {
+      w = 1;
+      const follows = cur[4] !== cur[2] || cur[5] !== cur[3];
+      tx = follows && ball ? bx : cur[2]; ty = follows && ball ? by : cur[3];
+    } else if (next && next[1] === idx) {
+      w = clampN(1 - (next[0] - t) / 2.5, 0, 1); tx = next[2]; ty = next[3];
+    } else if (cur && cur[1] === idx) {
+      w = 1; tx = cur[4]; ty = cur[5];
+    } else {
+      // recently released the ball: drift back to shape over two seconds
+      for (let j = i; j >= 0 && t - T[j][0] < 4; j--) {
+        if (T[j][1] === idx) {
+          const until = T[j + 1] ? T[j + 1][0] : T[j][0];
+          w = clampN(1 - (t - until) / 2, 0, 1); tx = T[j][4]; ty = T[j][5];
+          break;
+        }
+      }
+    }
+    out.push({ x: x + (tx - x) * w, y: y + (ty - y) * w, team: p.team, num: p.num, onBall: w > 0.5 });
+  });
+  return out;
 }
 
 function togglePitch() {
@@ -531,6 +632,9 @@ async function loadMatch(id) {
   if (!r.ok) { $("caption").textContent = `Couldn't load that match (${r.status}). Pick another one.`; return; }
   const d = await r.json();
   S.data = d;
+  S.squad = null; S.touchIdx = 0;
+  fetch(`/api/players/${id}`).then((x) => x.ok ? x.json() : null).then((p) => { if (S.data === d) S.squad = p; drawPitch(); })
+    .catch(() => {});
   const tl = d.timeline;
   const k = tl.filter((u) => u.kind === "kickoff");
   S.markers = {
