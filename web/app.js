@@ -31,7 +31,11 @@ const Browser = {
   voice: null, token: 0,
   pickVoice() {
     const vs = speechSynthesis.getVoices();
-    this.voice = vs.find((v) => v.lang === "en-GB") || vs.find((v) => v.lang && v.lang.startsWith("en")) || null;
+    // prefer the natural-sounding voices (Edge's "Online (Natural)" ones), British English first
+    const en = vs.filter((v) => v.lang && v.lang.startsWith("en"));
+    const natural = (v) => /natural|neural|online/i.test(v.name);
+    this.voice = en.find((v) => v.lang === "en-GB" && natural(v)) || en.find(natural) ||
+                 en.find((v) => v.lang === "en-GB") || en[0] || null;
   },
   speak(item, done) {
     const t = ++this.token;

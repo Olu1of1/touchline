@@ -2,6 +2,9 @@
 
 Each update ships as `touchline-vN-update.zip`, containing only the files that changed. Extract it into the project folder (the one with `README.md` in it) and choose **Replace** when asked.
 
+## v10 (27 Oct): better browser voice
+- The browser voice prefers natural-sounding voices (Edge's "Online (Natural)" voices), British English first.
+
 ## v9 (27 Oct): all 22 players on the pitch view
 - The pitch view shows every player on the pitch (shirt numbers; home in chalk, away in navy), plus the ball. Substitutions and red cards take effect at the right moment.
 - Positions are estimated, and the page says so: each player holds the spot their role gives them, the team shifts with the ball (further up when it has it), and a player is pulled to the exact spot whenever the data records them touching the ball. Running speed is capped, so nobody teleports.
