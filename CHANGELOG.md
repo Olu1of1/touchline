@@ -2,6 +2,12 @@
 
 Each update ships as `touchline-vN-update.zip`, containing only the files that changed. Extract it into the project folder (the one with `README.md` in it) and choose **Replace** when asked.
 
+## v7 (25 Oct): live on Azure
+- Live app link in the README.
+- `requirements-app.txt` pinned to the exact versions the deployed app and the tests run on.
+- `.dockerignore` skips `.git`, so builds upload less.
+- `docs/DEPLOY.md`: build the image in Azure straight from GitHub (no large upload from your PC), the environment created without a log workspace, the multi-factor sign-in fix, and how to update the live app.
+
 ## v6 (25 Oct): Azure OpenAI only
 - Removed the GitHub Models route. GitHub retired GitHub Models on 30 July 2026, and its endpoint now answers "OK" instead of a model reply. The language model is Azure OpenAI in Microsoft Foundry.
 - `python -m touchline.check`: one command to confirm the model answers through the Agent Framework workflow.

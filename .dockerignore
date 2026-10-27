@@ -11,3 +11,4 @@ matchgen/
 scripts/
 *.md
 !README.md
+.git

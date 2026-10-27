@@ -12,7 +12,7 @@ turns a live event stream into spatial, timed commentary:
 Everything is causal: at any moment the agents only know what has already happened.
 """
 
-__version__ = "0.6.0"
+__version__ = "0.7.0"
 
 
 def _load_dotenv():

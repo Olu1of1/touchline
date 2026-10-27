@@ -25,15 +25,24 @@ az login
 az extension add --name containerapp --upgrade
 az provider register --namespace Microsoft.App
 az provider register --namespace Microsoft.OperationalInsights
+az provider register --namespace Microsoft.ContainerRegistry
 ```
 
-## 3. Build and deploy in one command
+If a later command fails with `AADSTS50076` (multi-factor authentication required), it prints an `az login --tenant ... --claims-challenge ...` command. Run `az logout`, then that command, then retry.
+
+## 3. Build and deploy
+
+Push your code to GitHub first. Azure builds the image straight from the public repo, so nothing large is uploaded from your PC (`az containerapp up --source .` also works, but it uploads the project and can fail on a slow or unstable connection).
 
 ```
-az containerapp up --name touchline --resource-group rg-touchline --location eastus2 --source . --ingress external --target-port 8000
+az group create --name rg-touchline --location eastus2
+az acr create --resource-group rg-touchline --name <registry name> --sku Basic --admin-enabled true
+az acr build --registry <registry name> --image touchline:v7 https://github.com/Olu1of1/touchline.git
+az containerapp env create --name touchline-env --resource-group rg-touchline --location eastus2 --logs-destination none
+az containerapp up --name touchline --resource-group rg-touchline --environment touchline-env --image <registry name>.azurecr.io/touchline:v7 --registry-server <registry name>.azurecr.io --ingress external --target-port 8000
 ```
 
-This builds the image in the cloud with the `Dockerfile` (no Docker needed on your PC), creates a Container Apps environment and a container registry, and prints the app's public URL. Use the same region as your resource group.
+The registry name must be unique across Azure, lowercase letters and numbers only. The last command prints the app's public URL.
 
 ## 4. Size it and add your keys as secrets
 
@@ -60,8 +69,11 @@ Open the URL from step 3. Then:
 
 ## Updating after code changes
 
+Push to GitHub, then build a new tag and point the app at it:
+
 ```
-az containerapp up --name touchline --resource-group rg-touchline --source .
+az acr build --registry <registry name> --image touchline:v8 https://github.com/Olu1of1/touchline.git
+az containerapp update --name touchline --resource-group rg-touchline --image <registry name>.azurecr.io/touchline:v8
 ```
 
 ## If something goes wrong

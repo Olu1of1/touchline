@@ -4,7 +4,7 @@ Touchline is a live match companion for blind and low-vision fans, with a resear
 
 Built for the Microsoft × Premier League *Inside the Game* developer hackathon. All clubs, players and matches are fictional. They come from a synthetic league generator that is calibrated against real top-flight football ([docs/GENERATOR.md](docs/GENERATOR.md)).
 
-**Demo video:** _link coming_ · **Live app:** _link coming_
+**Demo video:** _link coming_ · **Live app:** [touchline.ambitiousisland-9c477573.eastus2.azurecontainerapps.io](https://touchline.ambitiousisland-9c477573.eastus2.azurecontainerapps.io) (the first visit after a quiet spell takes about 15 seconds to wake up)
 
 ![The Touchline player at the moment of a goal: the score 4-3, and the spoken line in large yellow type](docs/screenshots/player.png)
 
